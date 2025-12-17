@@ -45,14 +45,14 @@ export default function RocketVisualizer({ speed, scaleRoket, faktorLorentz }: R
   return (
     <div
       ref={containerRef}
-      className="w-full bg-slate-800/50 backdrop-blur-sm rounded-lg p-8 sm:p-12 border border-white/10 overflow-hidden"
+      className="w-full bg-[#7A4B47]/40 backdrop-blur-sm rounded-lg p-8 sm:p-12 border border-[#B32C1A]/40 overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Top section with title */}
       <div className="mb-8">
         <h2 className="text-xl font-bold text-white mb-2">Roket gege</h2>
-        <p className="text-sm text-gray-300">
+        <p className="text-sm text-[#FFFB97]">
           {speed === 0 
             ? "Roket masih diem di lapangan. Mulai geser slider buat berangkat!" 
             : speed < 30 
@@ -78,7 +78,7 @@ export default function RocketVisualizer({ speed, scaleRoket, faktorLorentz }: R
                   repeat: Infinity,
                   delay: i * 0.2,
                 }}
-                className="absolute text-yellow-300 text-xs font-bold"
+                className="absolute text-[#FFFB97] text-xs font-bold"
                 style={{ top: `${20 + i * 15}%` }}
               >
                 *
@@ -88,7 +88,7 @@ export default function RocketVisualizer({ speed, scaleRoket, faktorLorentz }: R
         )}
 
         {/* Main track line */}
-        <div className="absolute w-full h-2 bg-gradient-to-r from-purple-500/50 via-purple-400/50 to-purple-300/50 rounded-full top-1/2 transform -translate-y-1/2"></div>
+        <div className="absolute w-full h-2 bg-gradient-to-r from-[#FE7F42]/50 via-[#FE7F42]/25 to-[#FFFB97]/45 rounded-full top-1/2 transform -translate-y-1/2"></div>
 
         {/* Rocket container with parallax effect */}
         <motion.div
@@ -105,7 +105,7 @@ export default function RocketVisualizer({ speed, scaleRoket, faktorLorentz }: R
           <motion.div
             animate={{
               scale: speed > 70 ? [1, 1.05, 1] : 1,
-              filter: `drop-shadow(0 ${4 + speed * 0.2}px ${12 + speed * 0.3}px rgba(168, 85, 247, ${0.3 + speed / 200}))`,
+              filter: `drop-shadow(0 ${4 + speed * 0.2}px ${12 + speed * 0.3}px rgba(254, 127, 66, ${0.3 + speed / 200}))`,
             }}
             transition={{ duration: 0.3 }}
             className="text-7xl sm:text-8xl drop-shadow-lg select-none cursor-pointer"
@@ -147,11 +147,11 @@ export default function RocketVisualizer({ speed, scaleRoket, faktorLorentz }: R
         </motion.div>
 
         {/* Speed markers below track */}
-        <div className="absolute bottom-0 left-0 right-0 flex justify-between px-4 opacity-40">
+        <div className="absolute bottom-0 left-0 right-0 flex justify-between px-4 opacity-50">
           {[0, 25, 50, 75, 99].map((val) => (
             <div key={val} className="flex flex-col items-center">
-              <div className="w-0.5 h-3 bg-purple-400 mb-1"></div>
-              <div className="text-xs text-gray-400 font-mono font-bold">{val}%</div>
+              <div className="w-0.5 h-3 bg-[#FE7F42] mb-1"></div>
+              <div className="text-xs text-[#FFFB97] font-mono font-bold">{val}%</div>
             </div>
           ))}
         </div>
@@ -161,56 +161,56 @@ export default function RocketVisualizer({ speed, scaleRoket, faktorLorentz }: R
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
         {/* Speed */}
         <motion.div
-          className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-purple-400/20 text-center"
+          className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-[#FE7F42]/30 text-center"
           animate={{ scale: speed > 0 ? 1 : 0.95 }}
         >
-          <p className="text-xs text-gray-400 font-semibold uppercase">Kecepatan</p>
-          <p className="text-2xl font-bold text-purple-400 mt-2">{speed}%</p>
+          <p className="text-xs text-[#FFFB97] font-semibold uppercase">Kecepatan</p>
+          <p className="text-2xl font-bold text-[#FE7F42] mt-2">{speed}%</p>
         </motion.div>
 
         {/* Contraction */}
         <motion.div
-          className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-orange-400/20 text-center"
+          className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-[#FE7F42]/30 text-center"
           animate={{
             scale: scaleRoket < 0.8 ? [1, 1.05, 1] : 1,
           }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs text-gray-400 font-semibold uppercase">Kontraksi</p>
-          <p className="text-2xl font-bold text-orange-400 mt-2">
+          <p className="text-xs text-[#FFFB97] font-semibold uppercase">Kontraksi</p>
+          <p className="text-2xl font-bold text-[#FE7F42] mt-2">
             {((1 - scaleRoket) * 100).toFixed(0)}%
           </p>
         </motion.div>
 
         {/* Lorentz Factor */}
         <motion.div
-          className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-blue-400/20 text-center"
+          className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-[#FFFB97]/25 text-center"
           animate={{
             textShadow:
               speed > 85
-                ? ["0 0 0px #60a5fa", "0 0 10px #60a5fa", "0 0 0px #60a5fa"]
-                : "0 0 0px #60a5fa",
+                ? ["0 0 0px #FFFB97", "0 0 10px #FFFB97", "0 0 0px #FFFB97"]
+                : "0 0 0px #FFFB97",
           }}
           transition={{ duration: 0.8, repeat: Infinity }}
         >
-          <p className="text-xs text-gray-400 font-semibold uppercase">Faktor γ</p>
-          <p className="text-2xl font-bold text-blue-400 mt-2">{faktorLorentz.toFixed(2)}</p>
+          <p className="text-xs text-[#FFFB97] font-semibold uppercase">Faktor γ</p>
+          <p className="text-2xl font-bold text-[#FFFB97] mt-2">{faktorLorentz.toFixed(2)}</p>
         </motion.div>
 
         {/* Status */}
-        <motion.div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 text-center">
-          <p className="text-xs text-gray-400 font-semibold uppercase">Status</p>
+        <motion.div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-[#B32C1A]/40 text-center">
+          <p className="text-xs text-[#FFFB97] font-semibold uppercase">Status</p>
           <motion.p
             className="text-sm font-bold mt-2 h-6"
             animate={{
               color:
                 speed === 0
-                  ? "#9ca3af"
+                  ? "#FFFB97"
                   : speed < 30
-                  ? "#34d399"
+                  ? "#FFFB97"
                   : speed < 70
-                  ? "#fbbf24"
-                  : "#f87171",
+                  ? "#FE7F42"
+                  : "#B32C1A",
             }}
           >
             {speed === 0
@@ -229,7 +229,7 @@ export default function RocketVisualizer({ speed, scaleRoket, faktorLorentz }: R
         <motion.p
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-4 text-xs text-gray-400 text-center italic"
+          className="mt-4 text-xs text-[#FFFB97] text-center italic"
         >
           Gerakin mouse ke atas/bawah buat liat roket berbelok!
         </motion.p>
